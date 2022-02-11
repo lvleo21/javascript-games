@@ -13,7 +13,6 @@ class Main {
         this.start();
     }
 
-
     start() {
         this.createElemests();
         this.draw();
@@ -28,6 +27,14 @@ class Main {
                 this.player1.changeSteps(8);
             }
 
+        })
+
+        document.addEventListener("keyup", (event) => {
+            if (event.key === "ArrowUp"){
+                this.player1.changeSteps(0);
+            } else if (event.key === "ArrowDown"){
+                this.player1.changeSteps(0);
+            }
         })
     }
 
@@ -54,7 +61,6 @@ class Main {
         }, 10)
     }
 }
-
 
 class Object {
     constructor(posX, posY, width, height) {
@@ -87,12 +93,12 @@ class Player extends Object {
 
     startMoving(minWidth, maxWidth) {
         setInterval(() => {
+            //TODO: Refactor this conditions, has a bug.;
+            let canMoveDown = this.steps === 8 && ((this.posY + this.height) <= maxWidth);
+            let canMoveUp = this.steps === -8 && (this.posY  >= minWidth);
 
-            this.posY+=this.steps; 
-            
-
-            if((this.posY + this.height) >= maxWidth || this.posY<= minWidth){
-                this.changeSteps(0);
+            if (canMoveDown || canMoveUp){
+                this.posY+=this.steps;  
             }
         }, 10)
     }
