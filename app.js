@@ -11,6 +11,7 @@ app.get("/pong", function (req, res) {
     res.sendFile(path.join(__dirname, 'pong/index.html'));
 })
 
+
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, 'main.html'));
 })
@@ -18,6 +19,8 @@ app.get("/", function (req, res) {
 // use the express-static middleware
 app.use(express.static("beehoney"));
 app.use(express.static("pong"));
+app.use(express.static("assets"));
+
 
 // start the server listening for requests
 app.listen(process.env.PORT || 3000,
