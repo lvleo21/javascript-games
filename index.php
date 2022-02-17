@@ -1,1 +1,1 @@
-<?php include_once('beehoney/index.html.html'); ?>
+<?php include_once('beehoney/index.html'); ?>
