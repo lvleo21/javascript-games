@@ -1,0 +1,14 @@
+{
+  "name": "javascript-games",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:lvleo21/javascript-games.git",
+  "author": "Leonardo Veras M. O. Lopes <verasleonardo210@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
