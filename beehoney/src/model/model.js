@@ -8,6 +8,9 @@ class Sprit {
         this.type = type;
         this.spritLimit = spritLimit;
         this.spritFrame = 1;
+        this.steps=3
+
+        this.speed = 0;
     }
 
     draw(context) {
@@ -25,12 +28,16 @@ class Sprit {
     }
 
     randomMove(maxHeight, maxWidth) {
-        this.posY += 5
+        this.posY += (this.steps + this.speed)
 
         if (this.posY >= maxHeight) {
             this.posY = -50;
             this.posX = Math.random() * ((maxWidth - this.width) - 0) + 0;
         }
+
+        console.log(this.speed)
+
+        this.speed += 0.001;
     }
 
     respaw() {
@@ -110,7 +117,7 @@ class Background extends Sprit {
     }
 
     move(maxHeight) {
-        this.posY += 5;
+        this.posY += 2;
 
         if (this.posY === maxHeight) {
             this.posY = 0;
@@ -169,10 +176,12 @@ class Text {
 
 class Collider {
 
-    constructor(bee, spider, flower) {
+    constructor(bee, spider, flower, canvasWidth, canvasHeight) {
         this.bee = bee;
         this.spider = spider;
         this.flower = flower;
+        this.canvasWidth = canvasWidth;
+        this.canvasHeight = canvasHeight;
     }
 
 
@@ -200,5 +209,24 @@ class Collider {
             return true;
         }
         return false;
+    }
+
+    verifyWallCollision(){
+        if (this.bee.posX + this.bee.width >= this.canvasWidth){
+            this.bee.posX = this.canvasWidth - this.bee.width;
+        }
+
+        if (this.bee.posX <= 0){
+            this.bee.posX = 0;
+        }
+
+        if (this.bee.posY <= 0){
+            this.bee.posY = 0;
+        }
+
+        if (this.bee.posY + this.bee.height >= this.canvasHeight){
+            this.bee.posY= this.canvasHeight- this.bee.height;
+        }
+
     }
 }
