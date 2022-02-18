@@ -8,7 +8,7 @@ class Sprit {
         this.type = type;
         this.spritLimit = spritLimit;
         this.spritFrame = 1;
-        this.steps=3
+        this.steps = 3
 
         this.speed = 0;
     }
@@ -34,9 +34,6 @@ class Sprit {
             this.posY = -50;
             this.posX = Math.random() * ((maxWidth - this.width) - 0) + 0;
         }
-
-        console.log(this.speed)
-
         this.speed += 0.001;
     }
 
@@ -82,6 +79,13 @@ class Bee extends Sprit {
     }
 
     move() {
+
+        if(this.posX+this.stepsX <= 0 || this.posX + this.width + this.stepsX>= 500) {
+            this.stepsX = 0;
+        } else if (this.posY+this.stepsY <= 0 || this.posY + this.height + this.stepsY>= 900){
+            this.stepsY = 0;
+        }
+
         this.posX += this.stepsX;
         this.posY += this.stepsY;
     }
@@ -93,6 +97,7 @@ class Bee extends Sprit {
     incrementPoints() {
         this.points.setText(this.points.text + 1);
     }
+
 
     draw(context) {
         context.drawImage(this.sprit, this.posX, this.posY, this.width, this.height);
@@ -114,14 +119,18 @@ class Flower extends Sprit {
 class Background extends Sprit {
     constructor(posX, posY, width, height, urlSprit) {
         super(posX, posY, width, height, urlSprit);
+        this.steps = 3;
+        this.speed = 0;
     }
 
     move(maxHeight) {
-        this.posY += 2;
+        this.posY += (this.steps + this.speed)
 
-        if (this.posY === maxHeight) {
+        if (this.posY >= maxHeight) {
             this.posY = 0;
         }
+
+        this.speed += 0.001;
     }
 
     draw(context) {
@@ -211,22 +220,21 @@ class Collider {
         return false;
     }
 
-    verifyWallCollision(){
-        if (this.bee.posX + this.bee.width >= this.canvasWidth){
-            this.bee.posX = this.canvasWidth - this.bee.width;
+    static verifyWallCollision(bee, canvasWidth, canvasHeight) {
+        if (bee.posX + bee.width >= canvasWidth) { //* Colisão Direita
+            console.log("Colisão R");
+            return "R"
+        } else if (bee.posX <= 0) {  //* Colisão Esqueda
+            console.log("Colisão L");
+            return "L"
+        } else if (bee.posY <= 0) {  //* Colisão Cima
+            console.log("Colisão T");
+            return "T"
+        } else if (bee.posY + bee.height >= canvasHeight) { //* Colisão baixo
+            console.log("Colisão B");
+            return "B"
         }
 
-        if (this.bee.posX <= 0){
-            this.bee.posX = 0;
-        }
-
-        if (this.bee.posY <= 0){
-            this.bee.posY = 0;
-        }
-
-        if (this.bee.posY + this.bee.height >= this.canvasHeight){
-            this.bee.posY= this.canvasHeight- this.bee.height;
-        }
-
+        return null
     }
 }

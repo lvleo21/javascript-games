@@ -19,7 +19,7 @@ class Controller {
         this.spider = new Spider(0, 100, 70, 58, "assets/spider1.png");
         this.flower = new Flower(50, 400, 48, 48, "assets/florwer1.png");
 
-        this.collision = new Collider(this.bee, this.spider, this.flower, this.view.canvas.width, this.view.canvas.height);
+        this.collision = new Collider(this.bee, this.spider, this.flower);
 
         this.arrayElements.push(
             this.background,
@@ -44,10 +44,7 @@ class Controller {
             this.spider.randomMove(this.view.canvas.height, this.view.canvas.width);
             this.flower.randomMove(this.view.canvas.height, this.view.canvas.width);
             this.view.draw(this.arrayElements);
-
             this.collision.verifyCollision();
-            this.collision.verifyWallCollision();
-
         }, 10)
 
         // * Start Animation
