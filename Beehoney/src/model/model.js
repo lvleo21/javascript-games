@@ -10,6 +10,8 @@ class Sprit {
         this.spritFrame = 1;
         this.steps = 3
         this.speed = 0;
+
+        this.frame = 0;
     }
 
     draw(context) {
@@ -17,13 +19,19 @@ class Sprit {
     }
 
     animation() {
-        this.sprit.src = `Beehoney/assets/${this.type}${this.spritFrame}.png`;
+        this.frame+=1;
+
+        if (this.frame >= 20){
+            this.frame = 0;
+            this.spritFrame+=1;
+        }
+
 
         if (this.spritFrame === this.spritLimit) {
             this.spritFrame = 1;
-        } else {
-            this.spritFrame++;
         }
+
+        this.sprit.src = `Beehoney/assets/${this.type}${this.spritFrame}.png`;
     }
 
     randomMove(maxHeight, maxWidth) {
