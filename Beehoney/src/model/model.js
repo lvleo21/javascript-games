@@ -17,15 +17,13 @@ class Sprit {
     }
 
     animation() {
-        setInterval(() => {
-            this.sprit.src = `Beehoney/assets/${this.type}${this.spritFrame}.png`;
+        this.sprit.src = `Beehoney/assets/${this.type}${this.spritFrame}.png`;
 
-            if (this.spritFrame === this.spritLimit) {
-                this.spritFrame = 1;
-            } else {
-                this.spritFrame++;
-            }
-        }, 100);
+        if (this.spritFrame === this.spritLimit) {
+            this.spritFrame = 1;
+        } else {
+            this.spritFrame++;
+        }
     }
 
     randomMove(maxHeight, maxWidth) {

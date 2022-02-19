@@ -11,13 +11,6 @@ class Controller {
         this.createElements();
         this.addListener();
         this.start();
-
-        //* start animations
-        this.bee.animation();
-        this.spider.animation();
-        this.flower.animation();
-
-
     }
 
     createElements() {
@@ -45,10 +38,10 @@ class Controller {
 
     start() {
 
-        //* start animations
-        // this.bee.animation();
-        // this.spider.animation();
-        // this.flower.animation();
+        //* Change animations
+        this.bee.animation();
+        this.spider.animation();
+        this.flower.animation();
 
         //* Start Game Looping
         this.background.move(this.view.canvas.height);
