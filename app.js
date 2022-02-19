@@ -3,8 +3,8 @@ const app = express();
 const path = require("path")
 
 // define the first route
-app.get("/beehoney", function (req, res) {
-    res.sendFile(path.join(__dirname, 'beehoney/index.html'));
+app.get("/Beehoney", function (req, res) {
+    res.sendFile(path.join(__dirname, 'Beehoney/index.html'));
 })
 
 app.get("/pong", function (req, res) {
@@ -20,10 +20,8 @@ app.get("/", function (req, res) {
 })
 
 // use the express-static middleware
-app.use(express.static("beehoney"));
-app.use(express.static("FlappyBird"));
-app.use(express.static("pong"));
-app.use(express.static("assets"));
+app.use(express.static("./"));
+
 
 
 // start the server listening for requests

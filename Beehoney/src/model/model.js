@@ -9,7 +9,6 @@ class Sprit {
         this.spritLimit = spritLimit;
         this.spritFrame = 1;
         this.steps = 3
-
         this.speed = 0;
     }
 
@@ -18,13 +17,15 @@ class Sprit {
     }
 
     animation() {
-        this.sprit.src = `assets/${this.type}${this.spritFrame}.png`;
+        setInterval(() => {
+            this.sprit.src = `Beehoney/assets/${this.type}${this.spritFrame}.png`;
 
-        if (this.spritFrame === this.spritLimit) {
-            this.spritFrame = 1;
-        } else {
-            this.spritFrame++;
-        }
+            if (this.spritFrame === this.spritLimit) {
+                this.spritFrame = 1;
+            } else {
+                this.spritFrame++;
+            }
+        }, 100);
     }
 
     randomMove(maxHeight, maxWidth) {
@@ -80,9 +81,9 @@ class Bee extends Sprit {
 
     move() {
 
-        if(this.posX+this.stepsX <= 0 || this.posX + this.width + this.stepsX>= 500) {
+        if (this.posX + this.stepsX <= 0 || this.posX + this.width + this.stepsX >= 500) {
             this.stepsX = 0;
-        } else if (this.posY+this.stepsY <= 0 || this.posY + this.height + this.stepsY>= 900){
+        } else if (this.posY + this.stepsY <= 0 || this.posY + this.height + this.stepsY >= 900) {
             this.stepsY = 0;
         }
 
